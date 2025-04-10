@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v0.1.1](https://github.com/kristof-mattei/fork-rs/compare/d04159f347725b9ce5f85fd93128151c458e676c..v0.1.1) - 2025-04-10
+#### Bug Fixes
+- add comments - ([17291f4](https://github.com/kristof-mattei/fork-rs/commit/17291f4e08ac0408b299ccaa7df3bf4fd8972327)) - [@kristof-mattei](https://github.com/kristof-mattei)
+#### Miscellaneous Chores
+- test function - ([d04159f](https://github.com/kristof-mattei/fork-rs/commit/d04159f347725b9ce5f85fd93128151c458e676c)) - [@kristof-mattei](https://github.com/kristof-mattei)
+
+- - -
+
 ## [v0.1.0](https://github.com/kristof-mattei/fork-rs/compare/v0.0.0-development..v0.1.0) - 2025-04-10
 #### Miscellaneous Chores
 - update readme - ([0f3d8b7](https://github.com/kristof-mattei/fork-rs/commit/0f3d8b7ec316f14150021728f37943cb2cf58fee)) - [@kristof-mattei](https://github.com/kristof-mattei)
