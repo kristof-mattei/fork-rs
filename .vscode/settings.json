@@ -9,6 +9,6 @@
     },
     "rust-analyzer.debug.openDebugPane": true,
     "rust-analyzer.runnables.extraEnv": {
-        "RUST_LOG": "DEBUG,rust_seed=TRACE"
+        "RUST_LOG": "DEBUG,fork_rs=TRACE"
     }
 }

@@ -1,5 +1,5 @@
 {
-  "name": "rust-seed",
+  "name": "fork-rs",
   "version": "0.0.0-development",
   "description": "It's written in Rust!",
   "main": "src/main.rs",
@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/kristof-mattei/rust-seed.git"
+    "url": "https://github.com/kristof-mattei/fork-rs.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/kristof-mattei/rust-seed/issues"
+    "url": "https://github.com/kristof-mattei/fork-rs/issues"
   },
-  "homepage": "https://github.com/kristof-mattei/rust-seed#readme",
+  "homepage": "https://github.com/kristof-mattei/fork-rs#readme",
   "devDependencies": {
     "prettier": "3.5.3",
     "prettier-plugin-sh": "0.17.1"

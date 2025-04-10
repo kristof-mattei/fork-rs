@@ -80,6 +80,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "fork-rs"
+version = "0.0.0-development"
+dependencies = [
+ "color-eyre",
+]
+
+[[package]]
 name = "gimli"
 version = "0.31.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -144,13 +151,6 @@ name = "pin-project-lite"
 version = "0.2.16"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3b3cff922bd51709b605d9ead9aa71031d81447142d828eb4a6eba76fe619f9b"
-
-[[package]]
-name = "rust-seed"
-version = "0.0.0-development"
-dependencies = [
- "color-eyre",
-]
 
 [[package]]
 name = "rustc-demangle"

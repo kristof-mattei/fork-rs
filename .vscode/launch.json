@@ -7,11 +7,11 @@
         {
             "type": "lldb",
             "request": "launch",
-            "name": "Debug executable 'rust-seed'",
+            "name": "Debug executable 'fork-rs'",
             "cargo": {
-                "args": ["build", "--bin=rust-seed", "--package=rust-seed"],
+                "args": ["build", "--bin=fork-rs", "--package=fork-rs"],
                 "filter": {
-                    "name": "rust-seed",
+                    "name": "fork-rs",
                     "kind": "bin"
                 }
             },
@@ -19,7 +19,7 @@
             "cwd": "${workspaceFolder}",
             "env": {
                 "RUST_BACKTRACE": "1",
-                "RUST_LOG": "DEBUG,rust_seed=TRACE"
+                "RUST_LOG": "DEBUG,fork_rs=TRACE"
             },
             "internalConsoleOptions": "openOnSessionStart",
             "terminal": "console"
@@ -27,16 +27,16 @@
         {
             "type": "lldb",
             "request": "launch",
-            "name": "Debug unit tests in executable 'rust-seed'",
+            "name": "Debug unit tests in executable 'fork-rs'",
             "cargo": {
                 "args": [
                     "test",
                     "--no-run",
-                    "--bin=rust-seed",
-                    "--package=rust-seed"
+                    "--bin=fork-rs",
+                    "--package=fork-rs"
                 ],
                 "filter": {
-                    "name": "rust-seed",
+                    "name": "fork-rs",
                     "kind": "bin"
                 }
             },
@@ -44,7 +44,7 @@
             "cwd": "${workspaceFolder}",
             "env": {
                 "RUST_BACKTRACE": "1",
-                "RUST_LOG": "DEBUG,rust_seed=TRACE"
+                "RUST_LOG": "DEBUG,fork_rs=TRACE"
             },
             "internalConsoleOptions": "openOnSessionStart",
             "terminal": "console"
@@ -58,7 +58,7 @@
                     "test",
                     "--no-run",
                     "--test=integration_tests",
-                    "--package=rust-seed"
+                    "--package=fork-rs"
                 ],
                 "filter": {
                     "name": "integration_tests",
@@ -69,7 +69,7 @@
             "cwd": "${workspaceFolder}",
             "env": {
                 "RUST_BACKTRACE": "1",
-                "RUST_LOG": "DEBUG,rust_seed=TRACE"
+                "RUST_LOG": "DEBUG,fork_rs=TRACE"
             },
             "internalConsoleOptions": "openOnSessionStart",
             "terminal": "console"
