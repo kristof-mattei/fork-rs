@@ -140,6 +140,11 @@ fn setsid() -> Result<(), std::io::Error> {
     cvt::cvt(sid).map(|_| ())
 }
 
+/// Daemonizes the process
+///
+/// # Errors
+///
+/// * When the `fork` fails in the original process calling `daemonize()`
 pub fn daemonize() -> Result<Identity, std::io::Error> {
     DaemonizeOptions::new().daemonize()
 }
