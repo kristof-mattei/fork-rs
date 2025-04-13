@@ -2,6 +2,16 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v0.2.0](https://github.com/kristof-mattei/fork-rs/compare/a76c9d2c892d3507abf7e6b73fc2bbdc4357676c..v0.2.0) - 2025-04-13
+#### Features
+- initial version - ([3a5fd1f](https://github.com/kristof-mattei/fork-rs/commit/3a5fd1ff34d579dccfbfd03695919e7317dbd346)) - [@kristof-mattei](https://github.com/kristof-mattei)
+#### Miscellaneous Chores
+- **(deps)** update dependency prettier-plugin-sh to v0.17.2 - ([f06e3f2](https://github.com/kristof-mattei/fork-rs/commit/f06e3f230c767417c95a163986f9ccbf1ea5f992)) - renovate[bot]
+- **(deps)** update mcr.microsoft.com/devcontainers/rust:1-1-bullseye docker digest to a87c2e8 - ([a76c9d2](https://github.com/kristof-mattei/fork-rs/commit/a76c9d2c892d3507abf7e6b73fc2bbdc4357676c)) - renovate[bot]
+- docs - ([79a0356](https://github.com/kristof-mattei/fork-rs/commit/79a035636f79691de186d9cfc6a65ff9f59bfba7)) - [@kristof-mattei](https://github.com/kristof-mattei)
+
+- - -
+
 ## [v0.1.1](https://github.com/kristof-mattei/fork-rs/compare/d04159f347725b9ce5f85fd93128151c458e676c..v0.1.1) - 2025-04-10
 #### Bug Fixes
 - add comments - ([17291f4](https://github.com/kristof-mattei/fork-rs/commit/17291f4e08ac0408b299ccaa7df3bf4fd8972327)) - [@kristof-mattei](https://github.com/kristof-mattei)
