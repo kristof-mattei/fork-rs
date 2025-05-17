@@ -62,8 +62,7 @@ fn wait_for_failure(pid: i32, timeout_ms: u16) -> Result<(), std::io::Error> {
         // didn't fail within `timeout_ms`
         Ok(())
     } else {
-        Err(std::io::Error::new(
-            std::io::ErrorKind::Other,
+        Err(std::io::Error::other(
             "Grandchild died before `timeout_ms` expiration",
         ))
     }
@@ -80,31 +79,24 @@ fn wait_for_success(pid: i32) -> Result<(), std::io::Error> {
 
     match ExitCodes::try_from(status) {
         Ok(ExitCodes::Ok) => Ok(()),
-        Ok(ExitCodes::ChildFailedToFork) => Err(std::io::Error::new(
-            std::io::ErrorKind::Other,
-            "Child did not launch correctly",
-        )),
+        Ok(ExitCodes::ChildFailedToFork) => {
+            Err(std::io::Error::other("Child did not launch correctly"))
+        },
 
-        Ok(ExitCodes::ChildSetsidFailed) => Err(std::io::Error::new(
-            std::io::ErrorKind::Other,
-            "Child setsid failed",
-        )),
-        Ok(ExitCodes::GrandchildChdirFailed) => Err(std::io::Error::new(
-            std::io::ErrorKind::Other,
-            "GrandChild chdir failed",
-        )),
-        Ok(ExitCodes::GrandchildOpenDevNullFailed) => Err(std::io::Error::new(
-            std::io::ErrorKind::Other,
-            "GrandChild open /dev/null failed",
-        )),
-        Ok(ExitCodes::GrandchildFailedTooSoon) => Err(std::io::Error::new(
-            std::io::ErrorKind::Other,
-            "GrandChild failed too soon",
-        )),
-        Err(err) => Err(std::io::Error::new(
-            std::io::ErrorKind::Other,
-            format!("Unspecified error code: {}", err),
-        )),
+        Ok(ExitCodes::ChildSetsidFailed) => Err(std::io::Error::other("Child setsid failed")),
+        Ok(ExitCodes::GrandchildChdirFailed) => {
+            Err(std::io::Error::other("GrandChild chdir failed"))
+        },
+        Ok(ExitCodes::GrandchildOpenDevNullFailed) => {
+            Err(std::io::Error::other("GrandChild open /dev/null failed"))
+        },
+        Ok(ExitCodes::GrandchildFailedTooSoon) => {
+            Err(std::io::Error::other("GrandChild failed too soon"))
+        },
+        Err(err) => Err(std::io::Error::other(format!(
+            "Unspecified error code: {}",
+            err
+        ))),
     }
 }
 
