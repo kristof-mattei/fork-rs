@@ -214,7 +214,6 @@ impl DaemonizeOptions {
             },
             Err(_err) => {
                 // We're still in the child, but fork failed
-
                 process::exit(ExitCodes::ChildFailedToFork.into());
             },
         }
@@ -226,7 +225,6 @@ impl DaemonizeOptions {
         // [Equivalently, we could change to any directory containing files important to the daemon's operation.]
         if let Err(_err) = set_current_dir("/") {
             // Couldn't chdir to "/", which shouldn't fail
-
             process::exit(ExitCodes::GrandchildChdirFailed.into());
         }
 
@@ -248,16 +246,15 @@ impl DaemonizeOptions {
             Ok(file) => file.into_raw_fd(),
             Err(_err) => {
                 // couldn't open /dev/null?
-
                 process::exit(ExitCodes::GrandchildOpenDevNullFailed.into());
             },
         };
 
-        for i in [libc::STDIN_FILENO, libc::STDOUT_FILENO, libc::STDERR_FILENO] {
-            let _r = dup2(fd, i);
-        }
+        let _r = dup2(fd, libc::STDIN_FILENO);
+        let _r = dup2(fd, libc::STDOUT_FILENO);
+        let _r = dup2(fd, libc::STDERR_FILENO);
 
-        if ![libc::STDIN_FILENO, libc::STDOUT_FILENO, libc::STDERR_FILENO].contains(&fd) {
+        if fd > 2 {
             // fd is not one of the pre-defined ones, let's close it
             let _r = close(fd);
         }
