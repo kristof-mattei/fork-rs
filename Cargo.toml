@@ -41,4 +41,4 @@ non_ascii_idents = { level = "deny", priority = 127 }
 
 [dependencies]
 cvt = "0.1.2"
-libc = "0.2.173"
+libc = "0.2.174"
