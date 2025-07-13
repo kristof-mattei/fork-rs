@@ -1,15 +1,15 @@
 [package]
 name = "fork-rs"
-# don't change this, it's updated before an actual build by update-version.sh
 version = "0.0.0-development"
 edition = "2024"
 rust-version = "1.88.0"
 authors = ["Kristof Mattei"]
 description = "Modern fork for Rust"
-license-file = "LICENSE"
+license = "MIT"
 categories = ["api-bindings", "os"]
 keywords = ["linux", "fork", "native"]
 repository = "https://github.com/kristof-mattei/fork-rs"
+include = ["src/**", "/LICENSE", "/LICENSE-*"]
 
 [lints.clippy]
 # don't stop from compiling / running
