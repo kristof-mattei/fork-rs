@@ -15,7 +15,6 @@ enum ExitCodes {
 }
 
 impl From<ExitCodes> for i32 {
-    #[expect(clippy::as_conversions, reason = "ExitCodes is repr(i32)")]
     fn from(val: ExitCodes) -> Self {
         val as i32
     }
