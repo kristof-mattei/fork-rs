@@ -1,10 +1,10 @@
 use std::env::set_current_dir;
 use std::fs::OpenOptions;
-use std::os::fd::{IntoRawFd, RawFd};
+use std::os::fd::{IntoRawFd as _, RawFd};
 use std::process;
 
-#[repr(i32)]
 #[derive(Clone, Copy)]
+#[repr(i32)]
 enum ExitCodes {
     Ok = 0,
     ChildFailedToFork,
@@ -15,6 +15,7 @@ enum ExitCodes {
 }
 
 impl From<ExitCodes> for i32 {
+    #[expect(clippy::as_conversions, reason = "ExitCodes is repr(i32)")]
     fn from(val: ExitCodes) -> Self {
         val as i32
     }
@@ -48,6 +49,7 @@ enum Fork {
 }
 
 fn wait_for_failure(pid: i32, timeout_ms: u16) -> Result<(), std::io::Error> {
+    // SAFETY: libc call
     let pid_fd: libc::c_int = unsafe { libc::syscall(libc::SYS_pidfd_open, pid, 0) }
         .try_into()
         .expect("File descriptors always fit in `c_int`");
@@ -58,6 +60,7 @@ fn wait_for_failure(pid: i32, timeout_ms: u16) -> Result<(), std::io::Error> {
         revents: 0,
     };
 
+    // SAFETY: libc call
     if cvt::cvt_r(|| unsafe { libc::poll(&raw mut poll_fd, 1, timeout_ms.into()) })? == 0 {
         // didn't fail within `timeout_ms`
         Ok(())
@@ -71,9 +74,14 @@ fn wait_for_failure(pid: i32, timeout_ms: u16) -> Result<(), std::io::Error> {
 fn wait_for_success(pid: i32) -> Result<(), std::io::Error> {
     let mut status = 0;
 
+    // SAFETY: libc call
     let changed_pid = cvt::cvt_r(|| unsafe { libc::waitpid(pid, &raw mut status, 0) })?;
 
-    assert_eq!(pid, changed_pid);
+    if pid != changed_pid {
+        return Err(std::io::Error::other(
+            "changed pid does not match awaited pit",
+        ));
+    }
 
     let status = libc::WEXITSTATUS(status);
 
@@ -101,20 +109,23 @@ fn wait_for_success(pid: i32) -> Result<(), std::io::Error> {
 }
 
 fn close(fd: i32) -> Result<(), std::io::Error> {
+    // SAFETY: libc call
     let res = unsafe { libc::close(fd) };
 
-    let _ = cvt::cvt(res)?;
+    let _: i32 = cvt::cvt(res)?;
 
     Ok(())
 }
 
 fn dup2(from: RawFd, to: RawFd) -> Result<(), std::io::Error> {
+    // SAFETY: libc call
     cvt::cvt_r(|| unsafe { libc::dup2(from, to) }).map(|_| ())
 }
 
 fn fork() -> Result<Fork, std::io::Error> {
     // we're not capturing `EAGAIN` here, as the errors
     // described there aren't resolvable by themselves
+    // SAFETY: libc call
     let pid = unsafe { libc::fork() };
 
     let pid = cvt::cvt(pid)?;
@@ -127,6 +138,7 @@ fn fork() -> Result<Fork, std::io::Error> {
 }
 
 fn setsid() -> Result<(), std::io::Error> {
+    // SAFETY: libc call
     let sid = unsafe { libc::setsid() };
 
     cvt::cvt(sid).map(|_| ())
@@ -230,6 +242,7 @@ impl DaemonizeOptions {
 
         // umask(0) so that we have complete control over the permissions of anything we write. We don't know what umask we may have inherited.
         // [This step is optional]
+        // SAFETY: libc call
         let _previous_mask = unsafe { libc::umask(0) };
 
         // close() fds 0, 1, and 2. This releases the standard in, out, and error we inherited from our parent process.
@@ -271,7 +284,7 @@ mod tests {
     use crate::{Identity, daemonize};
 
     #[test]
-    fn test_child_1() {
+    fn child_1() {
         let result = match daemonize() {
             Ok(Identity::Original) => Ok(()),
             Ok(Identity::Daemon) => {
