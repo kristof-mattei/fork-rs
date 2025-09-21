@@ -1,8 +1,9 @@
 <!-- header goes here -->
-## [unreleased]
+## [0.3.0](https://github.com/kristof-mattei/fork-rs/compare/v0.2.0..v0.3.0) - 2025-09-21
 
 ### 🚀 Features
 
+- Add cross building - ([46dedc2](https://github.com/kristof-mattei/fork-rs/commit/46dedc27e9c8fc8af3110a95ac803c08f6a82aa8))
 - Multiplatform with caching - ([6c5188b](https://github.com/kristof-mattei/fork-rs/commit/6c5188b32d43e0f8ae0bd1d9082871b23e244116))
 - Enable codeql - ([9d22fa5](https://github.com/kristof-mattei/fork-rs/commit/9d22fa5261061d03a3c63a9fa5f5599e374b36ed))
 - Update publish defaults - ([406e06c](https://github.com/kristof-mattei/fork-rs/commit/406e06cae013094a6e2995e2c49158b1677b814e))
@@ -14,14 +15,24 @@
 - Pin to trixie, use gcc-14 from trixie - ([e0ea2a2](https://github.com/kristof-mattei/fork-rs/commit/e0ea2a212118b3a24d52bb86ae8bb5ed8e6582bd))
 - Separate cache based on target to allow for more efficient caching - ([89bcb9b](https://github.com/kristof-mattei/fork-rs/commit/89bcb9be9680fa5d0df610d93fb9b978a3362202))
 - Write output to per-target folder, otherwise caches overwrite each other causing recompilation in the install step - ([aabbed1](https://github.com/kristof-mattei/fork-rs/commit/aabbed1fd86be610b46a911d2d1cf7231b0ec5ac))
+- Use git-cliff for better changelogs - ([cb13014](https://github.com/kristof-mattei/fork-rs/commit/cb130144b31681f7bc6d70dd9843d4d2110463bd))
+- Add the self-referencing commit too - ([3b18cba](https://github.com/kristof-mattei/fork-rs/commit/3b18cba9bfb761c67d844e26b0c189f654c68d9b))
+- Diff is generated after the tag, so we don't need to add the as-if message - ([7b9b76e](https://github.com/kristof-mattei/fork-rs/commit/7b9b76e224972b4063357ec818ca403457ea90e9))
 
 ### 🐛 Bug Fixes
 
+- *(deps)* Update rust crate libc to 0.2.172 - ([4d8ce58](https://github.com/kristof-mattei/fork-rs/commit/4d8ce5800ac1cd52246f83f2a8918e216fca38b7))
 - *(deps)* Update rust crate openssl to 0.10.73 - ([818d5d7](https://github.com/kristof-mattei/fork-rs/commit/818d5d763e04fc8e3f0638a9264e9c8f1aecc4cb))
 - *(deps)* Update rust crate color-eyre to 0.6.5 - ([6cbb98d](https://github.com/kristof-mattei/fork-rs/commit/6cbb98dc877f5d2785ceb938f3fca30172c21bbe))
 - *(deps)* Update rust crate libc to 0.2.173 - ([d0cb82b](https://github.com/kristof-mattei/fork-rs/commit/d0cb82beb3612ec107e10d7187a73730a8bf1382))
 - *(deps)* Update rust crate libc to 0.2.174 - ([78cd2bc](https://github.com/kristof-mattei/fork-rs/commit/78cd2bc44c522bf748113d77499a0672dda5b4a5))
 - *(deps)* Update rust crate libc to 0.2.175 - ([abb8d01](https://github.com/kristof-mattei/fork-rs/commit/abb8d01767260e76081a94bf54692fe8167f4f90))
+- Start tracking lldb debug helper - ([b662ffa](https://github.com/kristof-mattei/fork-rs/commit/b662ffa8c38b08c5f3d276e6e58646013a051efd))
+- Disable clippy 1.87.0 let_and_return - ([9246d86](https://github.com/kristof-mattei/fork-rs/commit/9246d861995c87085c04618a8619320afdbd771d))
+- Add runner.arch to the cache keys - ([64b63e2](https://github.com/kristof-mattei/fork-rs/commit/64b63e2f99501f0208e54f3d1d35e19990751cec))
+- Set correct cache key for the docker step - ([bb875b8](https://github.com/kristof-mattei/fork-rs/commit/bb875b8d038162d657082014a7070edb573cae92))
+- Don't install binstall, cargo-edit doesn't have a package anyway - ([377a21e](https://github.com/kristof-mattei/fork-rs/commit/377a21ec73fd822d22099945fb196dcb89b75cc4))
+- Remove incorrec exit - ([3791382](https://github.com/kristof-mattei/fork-rs/commit/379138240224b860cf69d1249f93cacc8c847b6e))
 - Switch to prettier's mjs setup, widen limit for non-json files - ([15954b2](https://github.com/kristof-mattei/fork-rs/commit/15954b23a004049eb88cbce34cc69bd231dce81e))
 - Correct dpkg-architecture architecture check - ([83055c9](https://github.com/kristof-mattei/fork-rs/commit/83055c9bba144255202d4d12658323903be69d53))
 - Install with locked to prevent cargo from updating deps during cargo install - ([bdb7e91](https://github.com/kristof-mattei/fork-rs/commit/bdb7e91b3054f6ef902f1c87870118ff035638e3))
@@ -73,9 +84,34 @@
 - Set sha for pnpm - ([eb3e312](https://github.com/kristof-mattei/fork-rs/commit/eb3e3126b017db2a4482f00cb5097f53cd852a1e))
 - Admin can bypass - ([872a8bf](https://github.com/kristof-mattei/fork-rs/commit/872a8bf3a220c13f61cfaed5fc72862363e033ce))
 - Image as well because renovate is slow - ([b2a2c2d](https://github.com/kristof-mattei/fork-rs/commit/b2a2c2d675d902775baa61a96ee7c47e9ab0106c))
+- Use git-cliff to get next version - ([0be0460](https://github.com/kristof-mattei/fork-rs/commit/0be04606cccbb69b08ba47233de310b0fb290469))
+- Ignore .git - ([8293ae3](https://github.com/kristof-mattei/fork-rs/commit/8293ae364ac6a820b9745564ba83b206b2f969a5))
 
 ### ⚙️ Miscellaneous Tasks
 
+- *(release)* Release v1.5.0 - ([5504d10](https://github.com/kristof-mattei/fork-rs/commit/5504d10df91b765fac320a1ae903bc761017728c))
+- *(release)* Release v0.3.0 - ([](https://github.com/kristof-mattei/fork-rs/commit/))
+- *(version)* V1.3.0 - ([bee1b83](https://github.com/kristof-mattei/fork-rs/commit/bee1b83e6cfe1afd6286073fc1bb38787c0ba48e))
+- *(version)* V1.3.1 - ([096c422](https://github.com/kristof-mattei/fork-rs/commit/096c4229799cecace867a1de699a7f65eefe59bb))
+- *(version)* V1.4.0 - ([d2b999b](https://github.com/kristof-mattei/fork-rs/commit/d2b999b17175f8686884477736fc1412eb32928f))
+- Add badges - ([f30ffac](https://github.com/kristof-mattei/fork-rs/commit/f30ffac29f830f9bc4d7874af32fdc54a2e7641a))
+- Set default debug visualizer - ([6941793](https://github.com/kristof-mattei/fork-rs/commit/69417931ad3e2506dbee9732bef5b1ef9649c885))
+- Update debug setup - ([59756b7](https://github.com/kristof-mattei/fork-rs/commit/59756b712762276d2032290b7d24f3a9e900d059))
+- Change wording - ([34fb4cf](https://github.com/kristof-mattei/fork-rs/commit/34fb4cf3eda6724b074e3ce877a733dfaf8780cf))
+- Use std:io::Error::other - ([62f4e79](https://github.com/kristof-mattei/fork-rs/commit/62f4e790430a6f0213cea736fe3467b913cbd42a))
+- Formatting - ([f3dde64](https://github.com/kristof-mattei/fork-rs/commit/f3dde6447ec7fc4eadd646da761b872e21fdd6a2))
+- I686 is 32-bit, we need 64-bit - ([e57dbf8](https://github.com/kristof-mattei/fork-rs/commit/e57dbf819b37fe82bab231af7c693a8bb32cc04c))
+- Remove need for build & targetplatform in scripts - ([13b8275](https://github.com/kristof-mattei/fork-rs/commit/13b827509a357046309726f116cdfb611753d266))
+- More precise coverage, don't include test/** - ([83002c7](https://github.com/kristof-mattei/fork-rs/commit/83002c72807cf5ffe0b77fcc16f7353eeefe46fe))
+- Make wget more robust - ([a7e1e60](https://github.com/kristof-mattei/fork-rs/commit/a7e1e60645a975d9787f1681273af3b8b22326fc))
+- Remove customization, packages now work oob with binstall - ([c85dd07](https://github.com/kristof-mattei/fork-rs/commit/c85dd0741ff01084504eb2d18c53efcb57a5f37b))
+- Convention: bash variable names are lowercase - ([dc27ba1](https://github.com/kristof-mattei/fork-rs/commit/dc27ba1dc0d30acc3765a6369749891823bf5a70))
+- Consolidation of scripts - ([0a075f6](https://github.com/kristof-mattei/fork-rs/commit/0a075f6204c8e468fa8027314dc89ed552b5d839))
+- Move away from env, use output - ([a6a7b2c](https://github.com/kristof-mattei/fork-rs/commit/a6a7b2c240dfc8f005740d3b15b9a1e5473f7a4d))
+- Even more variables - ([64866e5](https://github.com/kristof-mattei/fork-rs/commit/64866e5bc5547d3b4ef13329f07708f59a0c1c6b))
+- Fix output - ([39aecb7](https://github.com/kristof-mattei/fork-rs/commit/39aecb7f88547541cb73a0daea054cba7bafc37f))
+- Group variables in single step - ([793b007](https://github.com/kristof-mattei/fork-rs/commit/793b0079596c261547767c8e939b31d12345e336))
+- Set revision explicitely - ([1ca21b9](https://github.com/kristof-mattei/fork-rs/commit/1ca21b9c350223869f42f51e85cf6311b2ca7307))
 - Fix strip-components, it caused nothing to be placed - ([b88f13c](https://github.com/kristof-mattei/fork-rs/commit/b88f13c48b7a68493819786d1c7e3ddf70e81526))
 - Move scripts - ([242ce77](https://github.com/kristof-mattei/fork-rs/commit/242ce77b6b07062f09cecc116df82720af27fb2f))
 - Fix typo - ([0ac7ffb](https://github.com/kristof-mattei/fork-rs/commit/0ac7ffb096832c33b15a2369f9a101849c342ffb))
@@ -121,51 +157,6 @@
 - Remove submodule folder - ([f6e5d3a](https://github.com/kristof-mattei/fork-rs/commit/f6e5d3a28c8efe2dcae9575945860a54e710d410))
 - Sort - ([c757c8d](https://github.com/kristof-mattei/fork-rs/commit/c757c8de56467f6c8f45b8825684605c4435da47))
 - Typo - ([cded012](https://github.com/kristof-mattei/fork-rs/commit/cded012f14f816d0e1878e4abf0225bbc22b5925))
-## [1.3.1](https://github.com/kristof-mattei/fork-rs/compare/v1.3.0..v1.3.1) - 2025-05-21
-
-### 🐛 Bug Fixes
-
-- Remove incorrec exit - ([3791382](https://github.com/kristof-mattei/fork-rs/commit/379138240224b860cf69d1249f93cacc8c847b6e))
-
-### ⚙️ Miscellaneous Tasks
-
-- *(version)* V1.3.1 - ([096c422](https://github.com/kristof-mattei/fork-rs/commit/096c4229799cecace867a1de699a7f65eefe59bb))
-## [1.3.0](https://github.com/kristof-mattei/fork-rs/compare/v0.2.0..v1.3.0) - 2025-05-21
-
-### 🚀 Features
-
-- Add cross building - ([46dedc2](https://github.com/kristof-mattei/fork-rs/commit/46dedc27e9c8fc8af3110a95ac803c08f6a82aa8))
-
-### 🐛 Bug Fixes
-
-- *(deps)* Update rust crate libc to 0.2.172 - ([4d8ce58](https://github.com/kristof-mattei/fork-rs/commit/4d8ce5800ac1cd52246f83f2a8918e216fca38b7))
-- Start tracking lldb debug helper - ([b662ffa](https://github.com/kristof-mattei/fork-rs/commit/b662ffa8c38b08c5f3d276e6e58646013a051efd))
-- Disable clippy 1.87.0 let_and_return - ([9246d86](https://github.com/kristof-mattei/fork-rs/commit/9246d861995c87085c04618a8619320afdbd771d))
-- Add runner.arch to the cache keys - ([64b63e2](https://github.com/kristof-mattei/fork-rs/commit/64b63e2f99501f0208e54f3d1d35e19990751cec))
-- Set correct cache key for the docker step - ([bb875b8](https://github.com/kristof-mattei/fork-rs/commit/bb875b8d038162d657082014a7070edb573cae92))
-- Don't install binstall, cargo-edit doesn't have a package anyway - ([377a21e](https://github.com/kristof-mattei/fork-rs/commit/377a21ec73fd822d22099945fb196dcb89b75cc4))
-
-### ⚙️ Miscellaneous Tasks
-
-- *(version)* V1.3.0 - ([bee1b83](https://github.com/kristof-mattei/fork-rs/commit/bee1b83e6cfe1afd6286073fc1bb38787c0ba48e))
-- Add badges - ([f30ffac](https://github.com/kristof-mattei/fork-rs/commit/f30ffac29f830f9bc4d7874af32fdc54a2e7641a))
-- Set default debug visualizer - ([6941793](https://github.com/kristof-mattei/fork-rs/commit/69417931ad3e2506dbee9732bef5b1ef9649c885))
-- Update debug setup - ([59756b7](https://github.com/kristof-mattei/fork-rs/commit/59756b712762276d2032290b7d24f3a9e900d059))
-- Change wording - ([34fb4cf](https://github.com/kristof-mattei/fork-rs/commit/34fb4cf3eda6724b074e3ce877a733dfaf8780cf))
-- Use std:io::Error::other - ([62f4e79](https://github.com/kristof-mattei/fork-rs/commit/62f4e790430a6f0213cea736fe3467b913cbd42a))
-- Formatting - ([f3dde64](https://github.com/kristof-mattei/fork-rs/commit/f3dde6447ec7fc4eadd646da761b872e21fdd6a2))
-- I686 is 32-bit, we need 64-bit - ([e57dbf8](https://github.com/kristof-mattei/fork-rs/commit/e57dbf819b37fe82bab231af7c693a8bb32cc04c))
-- Remove need for build & targetplatform in scripts - ([13b8275](https://github.com/kristof-mattei/fork-rs/commit/13b827509a357046309726f116cdfb611753d266))
-- More precise coverage, don't include test/** - ([83002c7](https://github.com/kristof-mattei/fork-rs/commit/83002c72807cf5ffe0b77fcc16f7353eeefe46fe))
-- Make wget more robust - ([a7e1e60](https://github.com/kristof-mattei/fork-rs/commit/a7e1e60645a975d9787f1681273af3b8b22326fc))
-- Remove customization, packages now work oob with binstall - ([c85dd07](https://github.com/kristof-mattei/fork-rs/commit/c85dd0741ff01084504eb2d18c53efcb57a5f37b))
-- Convention: bash variable names are lowercase - ([dc27ba1](https://github.com/kristof-mattei/fork-rs/commit/dc27ba1dc0d30acc3765a6369749891823bf5a70))
-- Consolidation of scripts - ([0a075f6](https://github.com/kristof-mattei/fork-rs/commit/0a075f6204c8e468fa8027314dc89ed552b5d839))
-- Move away from env, use output - ([a6a7b2c](https://github.com/kristof-mattei/fork-rs/commit/a6a7b2c240dfc8f005740d3b15b9a1e5473f7a4d))
-- Even more variables - ([64866e5](https://github.com/kristof-mattei/fork-rs/commit/64866e5bc5547d3b4ef13329f07708f59a0c1c6b))
-- Fix output - ([39aecb7](https://github.com/kristof-mattei/fork-rs/commit/39aecb7f88547541cb73a0daea054cba7bafc37f))
-- Group variables in single step - ([793b007](https://github.com/kristof-mattei/fork-rs/commit/793b0079596c261547767c8e939b31d12345e336))
-- Set revision explicitely - ([1ca21b9](https://github.com/kristof-mattei/fork-rs/commit/1ca21b9c350223869f42f51e85cf6311b2ca7307))
 ## [0.2.0](https://github.com/kristof-mattei/fork-rs/compare/v0.1.1..v0.2.0) - 2025-04-13
 
 ### 🚀 Features
@@ -192,114 +183,12 @@
 
 - *(version)* V0.1.0 - ([dba2660](https://github.com/kristof-mattei/fork-rs/commit/dba2660216d790221ad3d3cf32f13c9b5380b53d))
 - Update readme - ([0f3d8b7](https://github.com/kristof-mattei/fork-rs/commit/0f3d8b7ec316f14150021728f37943cb2cf58fee))
-## [0.0.0-development](https://github.com/kristof-mattei/fork-rs/compare/v1.2.0..v0.0.0-development) - 2025-04-10
-
-### 🐛 Bug Fixes
-
-- Commit lock - ([ee9d997](https://github.com/kristof-mattei/fork-rs/commit/ee9d997f9f33e384922e42962bc7d5b0f980c8c7))
-
-### ⚙️ Miscellaneous Tasks
-
-- Ignore generated changelog - ([9084f3f](https://github.com/kristof-mattei/fork-rs/commit/9084f3fe60d2794d98ca6fff47428c169a8f3f80))
-- Clippy 1.86 fixes - ([1ba9e82](https://github.com/kristof-mattei/fork-rs/commit/1ba9e82c8de2d8fd2ba93018639ec3683e95c9e6))
-- Disable required signatures - ([445e425](https://github.com/kristof-mattei/fork-rs/commit/445e4253a7dcbe8fac577cdcaff328466590abe1))
-- Fork - ([e972709](https://github.com/kristof-mattei/fork-rs/commit/e972709c24f44903c6e61157d6f9f29a541ecea1))
-- Set repo name - ([2ab5f17](https://github.com/kristof-mattei/fork-rs/commit/2ab5f17f4e4a4f2bd3b0557d35d4127f1d235cb7))
-## [1.2.0](https://github.com/kristof-mattei/fork-rs/compare/v1.1.0..v1.2.0) - 2025-03-14
+## [0.0.0-development] - 2025-04-10
 
 ### 🚀 Features
 
-- Multi-platform images - ([45196bd](https://github.com/kristof-mattei/fork-rs/commit/45196bd6bd8801472a6db0b76278fbeaa54c1ca1))
-- Codecov - ([fac48b6](https://github.com/kristof-mattei/fork-rs/commit/fac48b684db19cf74aae4afbf77783a9d31cacc2))
-- Docker multiplatform - ([c1f9221](https://github.com/kristof-mattei/fork-rs/commit/c1f922116dd2e78d149247667a514f3bb4724aa1))
-- Support for releasing crates - ([6da4854](https://github.com/kristof-mattei/fork-rs/commit/6da485494a7d16767c01b0255eae49fff6cb6dcf))
-- Get rid of semantic release, use cocogitto - ([a4b5e8c](https://github.com/kristof-mattei/fork-rs/commit/a4b5e8cf58786d438cccee5678dcad0bc1fdcdb2))
-
-### 🐛 Bug Fixes
-
-- *(deps)* Update rust crate color-eyre to 0.6.3 - ([baf1dc7](https://github.com/kristof-mattei/fork-rs/commit/baf1dc7b4352679914415662a2b16ec8f036d409))
-- Don't set shell, not needed in semgrep container - ([de4ab4c](https://github.com/kristof-mattei/fork-rs/commit/de4ab4c42e490e7e5a5ce2a6af342659f9ef3a49))
-- Separate scan and fixup, as the scan container doesn't have bash / jq anymore - ([4e59581](https://github.com/kristof-mattei/fork-rs/commit/4e595812651951b3e762d8abe0ef7dac61ff6156))
-- Only upload sarif file itself - ([0629d45](https://github.com/kristof-mattei/fork-rs/commit/0629d45d07730960d087feed26c941ee1d7fa0a6))
-- Set unpack folder, not filepath - ([3612966](https://github.com/kristof-mattei/fork-rs/commit/36129662df205055eedb8fd73e62a4dbeb08e323))
-- Platform name - ([d8cf974](https://github.com/kristof-mattei/fork-rs/commit/d8cf9747ae7b1c14fa7f70b1f7f612d342d1e31a))
-- Filepaths were wrong - ([6d1f131](https://github.com/kristof-mattei/fork-rs/commit/6d1f131d50f29b4e9f58a3ab29cc83da7dd3c0e2))
-- Use artifact v4 settings - ([d8c091d](https://github.com/kristof-mattei/fork-rs/commit/d8c091de62781eac1789ad4a11889e3fa4559414))
-- Correctly build musl - ([c712945](https://github.com/kristof-mattei/fork-rs/commit/c7129451d3a7618b0304bcf78471f5fd14811bf2))
-- Try something else - ([0efe974](https://github.com/kristof-mattei/fork-rs/commit/0efe9741d77cf9f7ca93f38255aa91e7dcf670af))
-- Report tests to codecov for tracking - ([cc1ccdd](https://github.com/kristof-mattei/fork-rs/commit/cc1ccdd729170ab4f8fddc1660911caf587fc3ad))
-- Prettier 3.41.0 - ([64aa76c](https://github.com/kristof-mattei/fork-rs/commit/64aa76cc522d7ee28a38bfffee53dc789abe4c12))
-- Restore needed workflows - ([72180e8](https://github.com/kristof-mattei/fork-rs/commit/72180e8239e1a85a892f7713d8986bb9ad34f55c))
-- Build container from scratch - ([250217a](https://github.com/kristof-mattei/fork-rs/commit/250217a80fa10d152f21f31c6031ce45039b32ce))
-- Remove @actions/tool-cache - ([3889143](https://github.com/kristof-mattei/fork-rs/commit/3889143b5e053e5d63835407138decb395314a13))
-
-### ⚙️ Miscellaneous Tasks
-
-- *(version)* V1.2.0 - ([1dbbec6](https://github.com/kristof-mattei/fork-rs/commit/1dbbec608864c5cb559a90d8904996011daef52c))
-- No trailing commas in json - ([a7b01be](https://github.com/kristof-mattei/fork-rs/commit/a7b01be89742c69a3a671fba6f674d7895cec524))
-- Use internal console, not the terminal for debugging - ([33e467c](https://github.com/kristof-mattei/fork-rs/commit/33e467c0afbef21f88e46190f86ad01431cb41aa))
-- Fix startColumn/endColumn being 0. Is invalid. Normalize json file for diffing, ignore output. Diff is expected - ([d37020f](https://github.com/kristof-mattei/fork-rs/commit/d37020fdd19bd9f2d7348fd7b9553dd0921afa6f))
-- Explicitely set prettierrc's path - ([3787f7f](https://github.com/kristof-mattei/fork-rs/commit/3787f7f1842f1b72aad3ad93a86af660c438f138))
-- Align title - ([0a560bf](https://github.com/kristof-mattei/fork-rs/commit/0a560bf62205abac716b75abe3a54d1776fbca81))
-- Checkout to satisfy the codeql tool - ([d6f858a](https://github.com/kristof-mattei/fork-rs/commit/d6f858a3a1f026bb0c219e0dfdc199f3b3676af6))
-- Rename semgrep job to make it register with semgrep - ([9720764](https://github.com/kristof-mattei/fork-rs/commit/9720764f82f17f202c8886bd638cf0faa36c4897))
-- Use semgrep action, not container - ([738b8de](https://github.com/kristof-mattei/fork-rs/commit/738b8deb1606266e1106577b3f61231efe5b2d4c))
-- Back to container, the action is outdated - ([dc2bd52](https://github.com/kristof-mattei/fork-rs/commit/dc2bd5258b484556d1600145067aa2a1fdb20d56))
-- Add category - ([df3df77](https://github.com/kristof-mattei/fork-rs/commit/df3df77ba61c070a904f3d2f721cb245a0ac6ad9))
-- Semgrep 1 job - ([5c6c2ee](https://github.com/kristof-mattei/fork-rs/commit/5c6c2ee8527a899ec058e6194fea015c957e23a9))
-- Fix filename - ([3802280](https://github.com/kristof-mattei/fork-rs/commit/3802280c2239d9a4174a315ccd172cfe8fc7f181))
-- Allow warnings in test - ([83d3bb2](https://github.com/kristof-mattei/fork-rs/commit/83d3bb205342485cf9f3ff8f87c20cd1a9df616e))
-- Allow warnings in test - ([e49075f](https://github.com/kristof-mattei/fork-rs/commit/e49075f2c6d6ab5b98e0d81304a2a6acad966c8a))
-- Set checks with new API - ([8361952](https://github.com/kristof-mattei/fork-rs/commit/83619524f171939a235a921255eea4f52c4e9e07))
-- Fix ] typo - ([3648333](https://github.com/kristof-mattei/fork-rs/commit/3648333faa3377507bef44aa89fdbc06882293d3))
-- Try codecov - ([e1dd293](https://github.com/kristof-mattei/fork-rs/commit/e1dd29358d55d597f95fa4053b76a7a99b1154f7))
-- Support for ARM64 - ([8658748](https://github.com/kristof-mattei/fork-rs/commit/865874837be48194e825e92178951bdd7859d744))
-- Try OCI - ([d40e4f7](https://github.com/kristof-mattei/fork-rs/commit/d40e4f7901c299a5429579c484e5fbc3c24716dc))
-- Build with matrix - ([87566ad](https://github.com/kristof-mattei/fork-rs/commit/87566adcc016b050b52b7749ce47183f7d78e791))
-- Also add rust target to name - ([fa11cb5](https://github.com/kristof-mattei/fork-rs/commit/fa11cb5b76646809cd5de6451a07818bec922b93))
-- Correct params - ([3b4513c](https://github.com/kristof-mattei/fork-rs/commit/3b4513c6dfd7d46a21b41594173de731f9139ece))
-- Debugging - ([89153e2](https://github.com/kristof-mattei/fork-rs/commit/89153e203b481aa34552ffdb093e608138b5bc10))
-- Export docker - ([5cff099](https://github.com/kristof-mattei/fork-rs/commit/5cff0993fca0e1a278b63e91059474efe6853486))
-- Prettier - ([abe1135](https://github.com/kristof-mattei/fork-rs/commit/abe113575b1383bb35be5849d65ced7b7bf7b240))
-- Linker for aarch64 - ([112a197](https://github.com/kristof-mattei/fork-rs/commit/112a19734f542c4ce61a93e1e1d365dbc4b0619d))
-- Copy in linker into docker container - ([57ff932](https://github.com/kristof-mattei/fork-rs/commit/57ff9320ee1aa210641ea66041351a3d308cd9a0))
-- Arm64 - ([9510d6d](https://github.com/kristof-mattei/fork-rs/commit/9510d6d00bbb8b67a8317f3e452fc5fda93b0036))
-- Minor build changes, formatting - ([8b1e9f8](https://github.com/kristof-mattei/fork-rs/commit/8b1e9f8aa2e6a37c268dd7587d0912d251afdea4))
-- Fix typo - ([3a3e968](https://github.com/kristof-mattei/fork-rs/commit/3a3e96855b5eadc81a2d0704a1c4de6569d721a5))
-- Also rebuild when .nvmrc changes - ([6155455](https://github.com/kristof-mattei/fork-rs/commit/61554551d015d07fb230e09d8d5e33da2cfd1e54))
-- Always run reporting, even when no changes as reports are mandatory - ([c86f535](https://github.com/kristof-mattei/fork-rs/commit/c86f5353d6813262e0bf327dbe2db641f87d363c))
-- Disable codecov running plugins, disable codecov searching - ([c946f90](https://github.com/kristof-mattei/fork-rs/commit/c946f90a1a119f7f97f1e2830c2c55eef3050c6a))
-- Add linebreaks in the if statements, otherwise the vscode parser gets upset - ([79ecc87](https://github.com/kristof-mattei/fork-rs/commit/79ecc8745e7629e60c75b1990aae2850543eb4d0))
-- Remove unneeded id - ([81b3536](https://github.com/kristof-mattei/fork-rs/commit/81b35367789ed5722e391766ed52dd73b02ac259))
-- Change name - ([7bcbcb6](https://github.com/kristof-mattei/fork-rs/commit/7bcbcb6b9a667327f8b239b4f49743efc6e55130))
-- Separate the name so the rename script doesn't update it - ([db3de07](https://github.com/kristof-mattei/fork-rs/commit/db3de077fe7c68dfd00b94332eb776c889abc19b))
-- Enforce_admins should be null if you want to disable it... - ([97a3c84](https://github.com/kristof-mattei/fork-rs/commit/97a3c846ebfaa2489bb7af87f4149ec7b9276efc))
-- Syntax consistency, as -> AS - ([ba8d334](https://github.com/kristof-mattei/fork-rs/commit/ba8d3344466d98c4ddd2260291cecbe946c7c9ec))
-- Formatting - ([773e45a](https://github.com/kristof-mattei/fork-rs/commit/773e45a7839624fef2056ed1e7f4e37339860f23))
-- Remove unneeded .ci - ([3be9c19](https://github.com/kristof-mattei/fork-rs/commit/3be9c19e347578b89a0c2e9b3448e5df3e9aeaee))
-- Formatting - ([978f4b2](https://github.com/kristof-mattei/fork-rs/commit/978f4b2a669b1d2f6ab3d9e7d738ab2b87516be4))
-- Enable more lints - ([4cb6bb7](https://github.com/kristof-mattei/fork-rs/commit/4cb6bb7967f130408917be3a75e19421c5fedb86))
-- Ensure we have oras - ([adb17dd](https://github.com/kristof-mattei/fork-rs/commit/adb17dd3071a0f100b7f9b25d5ee79b2af0594da))
-- Fix title - ([1ecfb70](https://github.com/kristof-mattei/fork-rs/commit/1ecfb70f8778f65098b117403bbc1574a2f6a017))
-- Install cargo-binstall from updated url - ([8172e7f](https://github.com/kristof-mattei/fork-rs/commit/8172e7fe5a8996eb4b499ccd4ee443f7e5ee2cca))
-- Rust 1.85.0 - ([d876c00](https://github.com/kristof-mattei/fork-rs/commit/d876c00796252ef81adf85ea6ae8fc25b9d5e0d8))
-- Format dockerfile - ([edb1f30](https://github.com/kristof-mattei/fork-rs/commit/edb1f309e3326acbad14b3b83aea65b53e12e506))
-- Fmt also 1.85.0 - ([c9488e3](https://github.com/kristof-mattei/fork-rs/commit/c9488e384c6ac0816b2a02574f18e0e54eff3b12))
-- Remove oras - ([8eceae9](https://github.com/kristof-mattei/fork-rs/commit/8eceae99297f4f5900549ef08f6105df530069cb))
-- Forgot `push` - ([6842ab4](https://github.com/kristof-mattei/fork-rs/commit/6842ab4e26a3417520d3334da6fd542d1d240871))
-- Push by tag, not filepath... - ([cb03a00](https://github.com/kristof-mattei/fork-rs/commit/cb03a00f208e2e3116f048bc6dcd42615933d90d))
-- Add logging, try remove unneeded (?) buildx - ([baafce6](https://github.com/kristof-mattei/fork-rs/commit/baafce66428bb303013f3dbc2760556cbbeca150))
-- Add template clippy.toml - ([307cbdb](https://github.com/kristof-mattei/fork-rs/commit/307cbdb563c89194cf50119410509e4f4030659b))
-- Fix for rustup 1.28.0 not installing needed toolchain by default - ([9f283b7](https://github.com/kristof-mattei/fork-rs/commit/9f283b736f6e0f03ac8c2afaa2fda5cbbb86896d))
-- Install rust-fmt - ([234465e](https://github.com/kristof-mattei/fork-rs/commit/234465e358cc52c0fead88af8f2116bac0f632b7))
-- Use working-directory - ([e7e90d5](https://github.com/kristof-mattei/fork-rs/commit/e7e90d51a297e56a3fabc95ee2ade32c4150bb57))
-- Set working-directory - ([f657766](https://github.com/kristof-mattei/fork-rs/commit/f657766fd5b75716fa316bd1ad90c5d7c32e975b))
-- Ensure we restore symlinks - ([ceede20](https://github.com/kristof-mattei/fork-rs/commit/ceede20c91e783b56d32c109e7e989834ea38cfe))
-- Remove incorrect comment - ([82a8d6d](https://github.com/kristof-mattei/fork-rs/commit/82a8d6d47279919c074137571d5901367e9826d3))
-## [1.1.0](https://github.com/kristof-mattei/fork-rs/compare/v1.0.0..v1.1.0) - 2024-01-13
-
-### 🚀 Features
-
+- Initial commit - ([7af0684](https://github.com/kristof-mattei/fork-rs/commit/7af0684c86b197699123cc67d0d87ec66fbd1e2e))
+- Added Quz and test - ([07ee173](https://github.com/kristof-mattei/fork-rs/commit/07ee173edd9983669abfac91aa60245c7347d911))
 - Use crane as tool instead of elaborate docker setup - ([a5bc70b](https://github.com/kristof-mattei/fork-rs/commit/a5bc70b9231c9fe16b4594e6349d75f5c0986932))
 - Allowed for concurrent building of docker container - ([7a99b3b](https://github.com/kristof-mattei/fork-rs/commit/7a99b3b303846cb1a98e80f54f5950faee7fc28a))
 - Grcov -> tarpaulin - ([a37fa30](https://github.com/kristof-mattei/fork-rs/commit/a37fa307247860f4071f31a569506b1bc8544045))
@@ -313,9 +202,20 @@
 - More rust 1.62 - ([628756b](https://github.com/kristof-mattei/fork-rs/commit/628756bf8790f9ffe84ac5cb3ff37baac70c7fcc))
 - Sync-repo-settings first pass - ([0d88baa](https://github.com/kristof-mattei/fork-rs/commit/0d88baa34a3d7b167028941aafdf32e5c464b9c2))
 - Generalize dockerfile - ([be4e9a5](https://github.com/kristof-mattei/fork-rs/commit/be4e9a5fe9cc34bcd239080845ace4c6a631ba97))
+- Multi-platform images - ([45196bd](https://github.com/kristof-mattei/fork-rs/commit/45196bd6bd8801472a6db0b76278fbeaa54c1ca1))
+- Codecov - ([fac48b6](https://github.com/kristof-mattei/fork-rs/commit/fac48b684db19cf74aae4afbf77783a9d31cacc2))
+- Docker multiplatform - ([c1f9221](https://github.com/kristof-mattei/fork-rs/commit/c1f922116dd2e78d149247667a514f3bb4724aa1))
+- Support for releasing crates - ([6da4854](https://github.com/kristof-mattei/fork-rs/commit/6da485494a7d16767c01b0255eae49fff6cb6dcf))
+- Get rid of semantic release, use cocogitto - ([a4b5e8c](https://github.com/kristof-mattei/fork-rs/commit/a4b5e8cf58786d438cccee5678dcad0bc1fdcdb2))
 
 ### 🐛 Bug Fixes
 
+- *(deps)* Update rust crate color-eyre to 0.6.3 - ([baf1dc7](https://github.com/kristof-mattei/fork-rs/commit/baf1dc7b4352679914415662a2b16ec8f036d409))
+- Enabled codecov - ([70a7b60](https://github.com/kristof-mattei/fork-rs/commit/70a7b60de32c66a3c0315f67d0f8278d91fc797a))
+- Codecov - ([1f6458f](https://github.com/kristof-mattei/fork-rs/commit/1f6458f7eeb0ba5dd85d02ebcd67734c4dbd5623))
+- Bumped cargo version - ([f47f7d0](https://github.com/kristof-mattei/fork-rs/commit/f47f7d0d5f7c6ba227002ba705a58f2fdf05aa2b))
+- Username.toLowerCase() - ([3c41052](https://github.com/kristof-mattei/fork-rs/commit/3c410523e2c154652a3564511bbc90fde0710bb3))
+- Make sure husky doesn't install on CI servers - ([6908d84](https://github.com/kristof-mattei/fork-rs/commit/6908d84e175ffab99bd18227bcbd515e0020c778))
 - Download grcov from releases, WAY faster - ([9a8c19b](https://github.com/kristof-mattei/fork-rs/commit/9a8c19b538ae5c3cff200aa2460d03055ee1d14b))
 - Don't try extract bz2 as gzip - ([edd13c8](https://github.com/kristof-mattei/fork-rs/commit/edd13c85f1f11c38e7bd1be2a1e8a4210346797a))
 - Arguments go into an array - ([9c6ff93](https://github.com/kristof-mattei/fork-rs/commit/9c6ff93cb599504352c601e3e9f34790859a86d5))
@@ -489,6 +389,21 @@
 - Mixed up config name order - ([6976f89](https://github.com/kristof-mattei/fork-rs/commit/6976f89fbd6f5774047fa42c1dff717e2a37e0e5))
 - Simplified tags - ([5c2e4f9](https://github.com/kristof-mattei/fork-rs/commit/5c2e4f911c20a994d2c70cbb9105e1ebb156c6ae))
 - Cleanup - ([80a9dda](https://github.com/kristof-mattei/fork-rs/commit/80a9dda3495b1f1142304906a9246b8f6072c0ec))
+- Don't set shell, not needed in semgrep container - ([de4ab4c](https://github.com/kristof-mattei/fork-rs/commit/de4ab4c42e490e7e5a5ce2a6af342659f9ef3a49))
+- Separate scan and fixup, as the scan container doesn't have bash / jq anymore - ([4e59581](https://github.com/kristof-mattei/fork-rs/commit/4e595812651951b3e762d8abe0ef7dac61ff6156))
+- Only upload sarif file itself - ([0629d45](https://github.com/kristof-mattei/fork-rs/commit/0629d45d07730960d087feed26c941ee1d7fa0a6))
+- Set unpack folder, not filepath - ([3612966](https://github.com/kristof-mattei/fork-rs/commit/36129662df205055eedb8fd73e62a4dbeb08e323))
+- Platform name - ([d8cf974](https://github.com/kristof-mattei/fork-rs/commit/d8cf9747ae7b1c14fa7f70b1f7f612d342d1e31a))
+- Filepaths were wrong - ([6d1f131](https://github.com/kristof-mattei/fork-rs/commit/6d1f131d50f29b4e9f58a3ab29cc83da7dd3c0e2))
+- Use artifact v4 settings - ([d8c091d](https://github.com/kristof-mattei/fork-rs/commit/d8c091de62781eac1789ad4a11889e3fa4559414))
+- Correctly build musl - ([c712945](https://github.com/kristof-mattei/fork-rs/commit/c7129451d3a7618b0304bcf78471f5fd14811bf2))
+- Try something else - ([0efe974](https://github.com/kristof-mattei/fork-rs/commit/0efe9741d77cf9f7ca93f38255aa91e7dcf670af))
+- Report tests to codecov for tracking - ([cc1ccdd](https://github.com/kristof-mattei/fork-rs/commit/cc1ccdd729170ab4f8fddc1660911caf587fc3ad))
+- Prettier 3.41.0 - ([64aa76c](https://github.com/kristof-mattei/fork-rs/commit/64aa76cc522d7ee28a38bfffee53dc789abe4c12))
+- Restore needed workflows - ([72180e8](https://github.com/kristof-mattei/fork-rs/commit/72180e8239e1a85a892f7713d8986bb9ad34f55c))
+- Build container from scratch - ([250217a](https://github.com/kristof-mattei/fork-rs/commit/250217a80fa10d152f21f31c6031ce45039b32ce))
+- Remove @actions/tool-cache - ([3889143](https://github.com/kristof-mattei/fork-rs/commit/3889143b5e053e5d63835407138decb395314a13))
+- Commit lock - ([ee9d997](https://github.com/kristof-mattei/fork-rs/commit/ee9d997f9f33e384922e42962bc7d5b0f980c8c7))
 
 ### 🧪 Testing
 
@@ -501,6 +416,8 @@
 
 ### ⚙️ Miscellaneous Tasks
 
+- *(version)* V1.2.0 - ([1dbbec6](https://github.com/kristof-mattei/fork-rs/commit/1dbbec608864c5cb559a90d8904996011daef52c))
+- Copy tags with docker tags again - ([8ffcf1e](https://github.com/kristof-mattei/fork-rs/commit/8ffcf1ed1de7a080abcea97328b049bf909a1dba))
 - Spelling correction - ([78e52a8](https://github.com/kristof-mattei/fork-rs/commit/78e52a882d3cc7e22e17e4457e870f9b3b7534d2))
 - Removed unneeded print - ([045ea6c](https://github.com/kristof-mattei/fork-rs/commit/045ea6c8ecceed3918dd2c5307cbae9e56ff1864))
 - Added comment for future me <insert 88mph joke> - ([1c4c032](https://github.com/kristof-mattei/fork-rs/commit/1c4c0321a161d6719796b0724a13eb754b2125c8))
@@ -633,22 +550,69 @@
 - Rename nextversion to next_version - ([4821da4](https://github.com/kristof-mattei/fork-rs/commit/4821da4b016aa974cffaf974c43165b504c1f125))
 - Ensure run and debug from main add the right LOG settings - ([d271883](https://github.com/kristof-mattei/fork-rs/commit/d27188314fa89fdcac88034f612d5bce6a13bcb4))
 - Console isn't useful, updated casing of levels - ([0cb31d5](https://github.com/kristof-mattei/fork-rs/commit/0cb31d5840aaf7672d71398a96e119fbc9d9a722))
-## [1.0.0](https://github.com/kristof-mattei/fork-rs/compare/v0.2.0..v1.0.0) - 2021-10-29
-
-### 🚀 Features
-
-- Initial commit - ([7af0684](https://github.com/kristof-mattei/fork-rs/commit/7af0684c86b197699123cc67d0d87ec66fbd1e2e))
-- Added Quz and test - ([07ee173](https://github.com/kristof-mattei/fork-rs/commit/07ee173edd9983669abfac91aa60245c7347d911))
-
-### 🐛 Bug Fixes
-
-- Enabled codecov - ([70a7b60](https://github.com/kristof-mattei/fork-rs/commit/70a7b60de32c66a3c0315f67d0f8278d91fc797a))
-- Codecov - ([1f6458f](https://github.com/kristof-mattei/fork-rs/commit/1f6458f7eeb0ba5dd85d02ebcd67734c4dbd5623))
-- Bumped cargo version - ([f47f7d0](https://github.com/kristof-mattei/fork-rs/commit/f47f7d0d5f7c6ba227002ba705a58f2fdf05aa2b))
-- Username.toLowerCase() - ([3c41052](https://github.com/kristof-mattei/fork-rs/commit/3c410523e2c154652a3564511bbc90fde0710bb3))
-- Make sure husky doesn't install on CI servers - ([6908d84](https://github.com/kristof-mattei/fork-rs/commit/6908d84e175ffab99bd18227bcbd515e0020c778))
-
-### ⚙️ Miscellaneous Tasks
-
-- Copy tags with docker tags again - ([8ffcf1e](https://github.com/kristof-mattei/fork-rs/commit/8ffcf1ed1de7a080abcea97328b049bf909a1dba))
+- No trailing commas in json - ([a7b01be](https://github.com/kristof-mattei/fork-rs/commit/a7b01be89742c69a3a671fba6f674d7895cec524))
+- Use internal console, not the terminal for debugging - ([33e467c](https://github.com/kristof-mattei/fork-rs/commit/33e467c0afbef21f88e46190f86ad01431cb41aa))
+- Fix startColumn/endColumn being 0. Is invalid. Normalize json file for diffing, ignore output. Diff is expected - ([d37020f](https://github.com/kristof-mattei/fork-rs/commit/d37020fdd19bd9f2d7348fd7b9553dd0921afa6f))
+- Explicitely set prettierrc's path - ([3787f7f](https://github.com/kristof-mattei/fork-rs/commit/3787f7f1842f1b72aad3ad93a86af660c438f138))
+- Align title - ([0a560bf](https://github.com/kristof-mattei/fork-rs/commit/0a560bf62205abac716b75abe3a54d1776fbca81))
+- Checkout to satisfy the codeql tool - ([d6f858a](https://github.com/kristof-mattei/fork-rs/commit/d6f858a3a1f026bb0c219e0dfdc199f3b3676af6))
+- Rename semgrep job to make it register with semgrep - ([9720764](https://github.com/kristof-mattei/fork-rs/commit/9720764f82f17f202c8886bd638cf0faa36c4897))
+- Use semgrep action, not container - ([738b8de](https://github.com/kristof-mattei/fork-rs/commit/738b8deb1606266e1106577b3f61231efe5b2d4c))
+- Back to container, the action is outdated - ([dc2bd52](https://github.com/kristof-mattei/fork-rs/commit/dc2bd5258b484556d1600145067aa2a1fdb20d56))
+- Add category - ([df3df77](https://github.com/kristof-mattei/fork-rs/commit/df3df77ba61c070a904f3d2f721cb245a0ac6ad9))
+- Semgrep 1 job - ([5c6c2ee](https://github.com/kristof-mattei/fork-rs/commit/5c6c2ee8527a899ec058e6194fea015c957e23a9))
+- Fix filename - ([3802280](https://github.com/kristof-mattei/fork-rs/commit/3802280c2239d9a4174a315ccd172cfe8fc7f181))
+- Allow warnings in test - ([83d3bb2](https://github.com/kristof-mattei/fork-rs/commit/83d3bb205342485cf9f3ff8f87c20cd1a9df616e))
+- Allow warnings in test - ([e49075f](https://github.com/kristof-mattei/fork-rs/commit/e49075f2c6d6ab5b98e0d81304a2a6acad966c8a))
+- Set checks with new API - ([8361952](https://github.com/kristof-mattei/fork-rs/commit/83619524f171939a235a921255eea4f52c4e9e07))
+- Fix ] typo - ([3648333](https://github.com/kristof-mattei/fork-rs/commit/3648333faa3377507bef44aa89fdbc06882293d3))
+- Try codecov - ([e1dd293](https://github.com/kristof-mattei/fork-rs/commit/e1dd29358d55d597f95fa4053b76a7a99b1154f7))
+- Support for ARM64 - ([8658748](https://github.com/kristof-mattei/fork-rs/commit/865874837be48194e825e92178951bdd7859d744))
+- Try OCI - ([d40e4f7](https://github.com/kristof-mattei/fork-rs/commit/d40e4f7901c299a5429579c484e5fbc3c24716dc))
+- Build with matrix - ([87566ad](https://github.com/kristof-mattei/fork-rs/commit/87566adcc016b050b52b7749ce47183f7d78e791))
+- Also add rust target to name - ([fa11cb5](https://github.com/kristof-mattei/fork-rs/commit/fa11cb5b76646809cd5de6451a07818bec922b93))
+- Correct params - ([3b4513c](https://github.com/kristof-mattei/fork-rs/commit/3b4513c6dfd7d46a21b41594173de731f9139ece))
+- Debugging - ([89153e2](https://github.com/kristof-mattei/fork-rs/commit/89153e203b481aa34552ffdb093e608138b5bc10))
+- Export docker - ([5cff099](https://github.com/kristof-mattei/fork-rs/commit/5cff0993fca0e1a278b63e91059474efe6853486))
+- Prettier - ([abe1135](https://github.com/kristof-mattei/fork-rs/commit/abe113575b1383bb35be5849d65ced7b7bf7b240))
+- Linker for aarch64 - ([112a197](https://github.com/kristof-mattei/fork-rs/commit/112a19734f542c4ce61a93e1e1d365dbc4b0619d))
+- Copy in linker into docker container - ([57ff932](https://github.com/kristof-mattei/fork-rs/commit/57ff9320ee1aa210641ea66041351a3d308cd9a0))
+- Arm64 - ([9510d6d](https://github.com/kristof-mattei/fork-rs/commit/9510d6d00bbb8b67a8317f3e452fc5fda93b0036))
+- Minor build changes, formatting - ([8b1e9f8](https://github.com/kristof-mattei/fork-rs/commit/8b1e9f8aa2e6a37c268dd7587d0912d251afdea4))
+- Fix typo - ([3a3e968](https://github.com/kristof-mattei/fork-rs/commit/3a3e96855b5eadc81a2d0704a1c4de6569d721a5))
+- Also rebuild when .nvmrc changes - ([6155455](https://github.com/kristof-mattei/fork-rs/commit/61554551d015d07fb230e09d8d5e33da2cfd1e54))
+- Always run reporting, even when no changes as reports are mandatory - ([c86f535](https://github.com/kristof-mattei/fork-rs/commit/c86f5353d6813262e0bf327dbe2db641f87d363c))
+- Disable codecov running plugins, disable codecov searching - ([c946f90](https://github.com/kristof-mattei/fork-rs/commit/c946f90a1a119f7f97f1e2830c2c55eef3050c6a))
+- Add linebreaks in the if statements, otherwise the vscode parser gets upset - ([79ecc87](https://github.com/kristof-mattei/fork-rs/commit/79ecc8745e7629e60c75b1990aae2850543eb4d0))
+- Remove unneeded id - ([81b3536](https://github.com/kristof-mattei/fork-rs/commit/81b35367789ed5722e391766ed52dd73b02ac259))
+- Change name - ([7bcbcb6](https://github.com/kristof-mattei/fork-rs/commit/7bcbcb6b9a667327f8b239b4f49743efc6e55130))
+- Separate the name so the rename script doesn't update it - ([db3de07](https://github.com/kristof-mattei/fork-rs/commit/db3de077fe7c68dfd00b94332eb776c889abc19b))
+- Enforce_admins should be null if you want to disable it... - ([97a3c84](https://github.com/kristof-mattei/fork-rs/commit/97a3c846ebfaa2489bb7af87f4149ec7b9276efc))
+- Syntax consistency, as -> AS - ([ba8d334](https://github.com/kristof-mattei/fork-rs/commit/ba8d3344466d98c4ddd2260291cecbe946c7c9ec))
+- Formatting - ([773e45a](https://github.com/kristof-mattei/fork-rs/commit/773e45a7839624fef2056ed1e7f4e37339860f23))
+- Remove unneeded .ci - ([3be9c19](https://github.com/kristof-mattei/fork-rs/commit/3be9c19e347578b89a0c2e9b3448e5df3e9aeaee))
+- Formatting - ([978f4b2](https://github.com/kristof-mattei/fork-rs/commit/978f4b2a669b1d2f6ab3d9e7d738ab2b87516be4))
+- Enable more lints - ([4cb6bb7](https://github.com/kristof-mattei/fork-rs/commit/4cb6bb7967f130408917be3a75e19421c5fedb86))
+- Ensure we have oras - ([adb17dd](https://github.com/kristof-mattei/fork-rs/commit/adb17dd3071a0f100b7f9b25d5ee79b2af0594da))
+- Fix title - ([1ecfb70](https://github.com/kristof-mattei/fork-rs/commit/1ecfb70f8778f65098b117403bbc1574a2f6a017))
+- Install cargo-binstall from updated url - ([8172e7f](https://github.com/kristof-mattei/fork-rs/commit/8172e7fe5a8996eb4b499ccd4ee443f7e5ee2cca))
+- Rust 1.85.0 - ([d876c00](https://github.com/kristof-mattei/fork-rs/commit/d876c00796252ef81adf85ea6ae8fc25b9d5e0d8))
+- Format dockerfile - ([edb1f30](https://github.com/kristof-mattei/fork-rs/commit/edb1f309e3326acbad14b3b83aea65b53e12e506))
+- Fmt also 1.85.0 - ([c9488e3](https://github.com/kristof-mattei/fork-rs/commit/c9488e384c6ac0816b2a02574f18e0e54eff3b12))
+- Remove oras - ([8eceae9](https://github.com/kristof-mattei/fork-rs/commit/8eceae99297f4f5900549ef08f6105df530069cb))
+- Forgot `push` - ([6842ab4](https://github.com/kristof-mattei/fork-rs/commit/6842ab4e26a3417520d3334da6fd542d1d240871))
+- Push by tag, not filepath... - ([cb03a00](https://github.com/kristof-mattei/fork-rs/commit/cb03a00f208e2e3116f048bc6dcd42615933d90d))
+- Add logging, try remove unneeded (?) buildx - ([baafce6](https://github.com/kristof-mattei/fork-rs/commit/baafce66428bb303013f3dbc2760556cbbeca150))
+- Add template clippy.toml - ([307cbdb](https://github.com/kristof-mattei/fork-rs/commit/307cbdb563c89194cf50119410509e4f4030659b))
+- Fix for rustup 1.28.0 not installing needed toolchain by default - ([9f283b7](https://github.com/kristof-mattei/fork-rs/commit/9f283b736f6e0f03ac8c2afaa2fda5cbbb86896d))
+- Install rust-fmt - ([234465e](https://github.com/kristof-mattei/fork-rs/commit/234465e358cc52c0fead88af8f2116bac0f632b7))
+- Use working-directory - ([e7e90d5](https://github.com/kristof-mattei/fork-rs/commit/e7e90d51a297e56a3fabc95ee2ade32c4150bb57))
+- Set working-directory - ([f657766](https://github.com/kristof-mattei/fork-rs/commit/f657766fd5b75716fa316bd1ad90c5d7c32e975b))
+- Ensure we restore symlinks - ([ceede20](https://github.com/kristof-mattei/fork-rs/commit/ceede20c91e783b56d32c109e7e989834ea38cfe))
+- Remove incorrect comment - ([82a8d6d](https://github.com/kristof-mattei/fork-rs/commit/82a8d6d47279919c074137571d5901367e9826d3))
+- Ignore generated changelog - ([9084f3f](https://github.com/kristof-mattei/fork-rs/commit/9084f3fe60d2794d98ca6fff47428c169a8f3f80))
+- Clippy 1.86 fixes - ([1ba9e82](https://github.com/kristof-mattei/fork-rs/commit/1ba9e82c8de2d8fd2ba93018639ec3683e95c9e6))
+- Disable required signatures - ([445e425](https://github.com/kristof-mattei/fork-rs/commit/445e4253a7dcbe8fac577cdcaff328466590abe1))
+- Fork - ([e972709](https://github.com/kristof-mattei/fork-rs/commit/e972709c24f44903c6e61157d6f9f29a541ecea1))
+- Set repo name - ([2ab5f17](https://github.com/kristof-mattei/fork-rs/commit/2ab5f17f4e4a4f2bd3b0557d35d4127f1d235cb7))
 <!-- generated by git-cliff -->
