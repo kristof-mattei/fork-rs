@@ -13,7 +13,7 @@ include = ["src/**", "/LICENSE", "/LICENSE-*"]
 
 [dependencies]
 cvt = "0.1.2"
-libc = "0.2.178"
+libc = "0.2.179"
 
 [lints.clippy]
 # don't stop from compiling / running
