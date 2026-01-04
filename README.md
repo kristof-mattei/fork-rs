@@ -13,7 +13,7 @@
 
 # Inspiration
 
-Based on http://web.archive.org/web/20120914180018/http://www.steve.org.uk/Reference/Unix/faq_2.html#SEC16
+Based on <http://web.archive.org/web/20120914180018/http://www.steve.org.uk/Reference/Unix/faq_2.html#SEC16>
 
 with additional information from https://codingfreak.blogspot.com/2012/03/daemon-izing-process-in-linux.html
 
