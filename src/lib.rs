@@ -143,7 +143,7 @@ fn setsid() -> Result<(), std::io::Error> {
     cvt::cvt(sid).map(|_| ())
 }
 
-/// Daemonizes the process
+/// Daemonizes the process.
 ///
 /// # Errors
 ///
@@ -175,7 +175,7 @@ impl DaemonizeOptions {
         self
     }
 
-    /// Daemonizes the process
+    /// Daemonizes the process.
     ///
     /// # Errors
     ///
