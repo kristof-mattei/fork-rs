@@ -100,9 +100,9 @@ fn wait_for_success(pid: i32) -> Result<(), std::io::Error> {
         Ok(ExitCodes::GrandchildFailedTooSoon) => {
             Err(std::io::Error::other("GrandChild failed too soon"))
         },
-        Err(err) => Err(std::io::Error::other(format!(
+        Err(error) => Err(std::io::Error::other(format!(
             "Unspecified error code: {}",
-            err
+            error
         ))),
     }
 }
