@@ -15,6 +15,10 @@ enum ExitCodes {
 }
 
 impl From<ExitCodes> for i32 {
+    #[expect(
+        clippy::as_conversions,
+        reason = "Only way to convert enum instance to int, notice `ExitCodes` has the correct `repr`"
+    )]
     fn from(val: ExitCodes) -> Self {
         val as i32
     }
