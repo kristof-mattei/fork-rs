@@ -16,8 +16,8 @@ enum ExitCodes {
 
 impl From<ExitCodes> for i32 {
     #[expect(clippy::as_conversions, reason = "Enum's backing type is i32")]
-    fn from(val: ExitCodes) -> Self {
-        val as i32
+    fn from(value: ExitCodes) -> Self {
+        value as i32
     }
 }
 
