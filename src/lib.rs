@@ -281,6 +281,8 @@ mod tests {
     use std::thread;
     use std::time::Duration;
 
+    use pretty_assertions::assert_matches;
+
     use crate::{Identity, daemonize};
 
     #[test]
@@ -294,6 +296,6 @@ mod tests {
             Err(err) => Err(err),
         };
 
-        assert!(matches!(result, Ok(())));
+        assert_matches!(result, Ok(()));
     }
 }
