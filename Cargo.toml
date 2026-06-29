@@ -12,8 +12,8 @@ repository = "https://github.com/kristof-mattei/fork-rs"
 include = ["src/**", "/LICENSE", "/LICENSE-*"]
 
 [dependencies]
-cvt = "0.1.2"
-libc = "0.2.186"
+cvt = "=0.1.2"
+libc = "=0.2.186"
 
 [dev-dependencies]
 pretty_assertions = { version = "=1.4.1", features = ["unstable"] }
