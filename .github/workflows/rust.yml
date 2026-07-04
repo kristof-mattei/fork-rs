@@ -9,6 +9,7 @@ permissions:
 
 env:
   CARGO_FEATURES: --all-features
+  CARGO_INCREMENTAL: "0"
   CARGO_TERM_COLOR: always
   RUSTFLAGS: --deny=warnings
   RUSTC_WRAPPER: "sccache"
@@ -37,15 +38,11 @@ jobs:
             ~/.cargo/registry/index/
             ~/.cargo/registry/cache/
             ~/.cargo/git/db/
-          key: ${{ runner.os }}-${{ runner.arch }}-build-${{ env.CACHE_NAME }}-${{ hashFiles('Cargo.lock') }}-${{ github.workflow }}-warm-up-cache
+          key: ${{ runner.os }}-${{ runner.arch }}-${{ env.CACHE_NAME }}-${{ hashFiles('Cargo.lock') }}-${{ github.workflow }}-warm-up-cache
           restore-keys: |
-            ${{ runner.os }}-${{ runner.arch }}-build-${{ env.CACHE_NAME }}-${{ hashFiles('Cargo.lock') }}-${{ github.workflow }}-
-            ${{ runner.os }}-${{ runner.arch }}-build-${{ env.CACHE_NAME }}-${{ hashFiles('Cargo.lock') }}-
-            ${{ runner.os }}-${{ runner.arch }}-build-${{ env.CACHE_NAME }}-
-
-      - &set_up_mold
-        name: Set up mold
-        uses: rui314/setup-mold@9c9c13bf4c3f1adef0cc596abc155580bcb04444 # v1
+            ${{ runner.os }}-${{ runner.arch }}-${{ env.CACHE_NAME }}-${{ hashFiles('Cargo.lock') }}-${{ github.workflow }}-
+            ${{ runner.os }}-${{ runner.arch }}-${{ env.CACHE_NAME }}-${{ hashFiles('Cargo.lock') }}-
+            ${{ runner.os }}-${{ runner.arch }}-${{ env.CACHE_NAME }}-
 
       - &set_up_toolchain
         name: Set up toolchain
@@ -99,10 +96,12 @@ jobs:
 
       - &cache_cargo
         name: Cache cargo
-        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         env:
           CACHE_NAME: cargo
         with:
+          # we want to fail if `warm-up-cache` fails
+          fail-on-cache-miss: true
           path: |
             ~/.cargo/.crates.toml
             ~/.cargo/.crates2.json
@@ -110,25 +109,13 @@ jobs:
             ~/.cargo/registry/index/
             ~/.cargo/registry/cache/
             ~/.cargo/git/db/
-          key: ${{ runner.os }}-${{ runner.arch }}-build-${{ env.CACHE_NAME }}-${{ hashFiles('Cargo.lock') }}-${{ github.workflow }}-warm-up-cache
+          key: ${{ runner.os }}-${{ runner.arch }}-${{ env.CACHE_NAME }}-${{ hashFiles('Cargo.lock') }}-${{ github.workflow }}-warm-up-cache
 
-      - *set_up_mold
+      - &set_up_mold
+        name: Set up mold
+        uses: rui314/setup-mold@9c9c13bf4c3f1adef0cc596abc155580bcb04444 # v1
 
       - *set_up_toolchain
-
-      - &cache_target
-        name: Cache target
-        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
-        env:
-          CACHE_NAME: target
-        with:
-          path: |
-            ./target
-          key: ${{ runner.os }}-${{ runner.arch }}-build-${{ env.CACHE_NAME }}-${{ hashFiles('Cargo.lock') }}-${{ github.workflow }}-${{ github.job }}
-          restore-keys: |
-            ${{ runner.os }}-${{ runner.arch }}-build-${{ env.CACHE_NAME }}-${{ hashFiles('Cargo.lock') }}-${{ github.workflow }}-
-            ${{ runner.os }}-${{ runner.arch }}-build-${{ env.CACHE_NAME }}-${{ hashFiles('Cargo.lock') }}-
-            ${{ runner.os }}-${{ runner.arch }}-build-${{ env.CACHE_NAME }}-
 
       - *set_up_sccache
 
@@ -142,6 +129,7 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - changes
+      - warm-up-cache
     if: |
       github.event_name == 'pull_request' &&
       fromJSON(needs.changes.outputs.rust) == true
@@ -153,8 +141,6 @@ jobs:
       - *set_up_mold
 
       - *set_up_toolchain
-
-      - *cache_target
 
       - *set_up_sccache
 
@@ -177,8 +163,6 @@ jobs:
       fromJSON(needs.changes.outputs.rust) == true
     steps:
       - *checkout
-
-      - *cache_cargo
 
       - *set_up_toolchain
 
@@ -213,8 +197,6 @@ jobs:
       - *set_up_mold
 
       - *set_up_toolchain
-
-      - *cache_target
 
       - *set_up_sccache
 
@@ -338,14 +320,79 @@ jobs:
 
       - *set_up_toolchain
 
-      - *cache_target
-
       - *set_up_sccache
 
       - name: Run Clippy for GitHub Actions report
         uses: actions-rs-plus/clippy-check@23b52efac3da0e2b197a9ad2e7be0f515502aaaf # v2.5.0
         with:
           args: ${{ env.CARGO_FEATURES }} --all-targets --frozen --workspace
+
+  cargo-msrv:
+    name: Cargo MSRV
+    runs-on: ubuntu-latest
+    needs:
+      - changes
+      - warm-up-cache
+    if: |
+      github.event_name == 'pull_request' &&
+      fromJSON(needs.changes.outputs.rust) == true
+    steps:
+      - *checkout
+
+      - *cache_cargo
+
+      - *set_up_mold
+
+      - name: Get MSRV from Cargo.toml
+        id: msrv
+        shell: bash
+        run: |
+          msrv=$(cargo metadata --format-version 1 --no-deps | jq '.packages[] | .rust_version' --raw-output)
+          echo "msrv=${msrv}" >> "${GITHUB_OUTPUT}"
+
+      - name: Install MSRV toolchain
+        shell: bash
+        run: |
+          rustup toolchain install ${{ steps.msrv.outputs.msrv }} --profile minimal
+
+      - *set_up_sccache
+
+      - name: Check with MSRV
+        shell: bash
+        env:
+          RUSTFLAGS: ""
+        run: |
+          cargo +${{ steps.msrv.outputs.msrv }} check --frozen
+
+  cargo-docs:
+    name: Cargo docs (nightly)
+    runs-on: ubuntu-latest
+    needs:
+      - changes
+      - warm-up-cache
+    if: |
+      github.event_name == 'pull_request' &&
+      fromJSON(needs.changes.outputs.rust) == true
+    steps:
+      - *checkout
+
+      - *cache_cargo
+
+      - *set_up_mold
+
+      - name: Install nightly toolchain
+        shell: bash
+        run: |
+          rustup toolchain install nightly --profile minimal
+
+      - *set_up_sccache
+
+      - name: Build docs
+        shell: bash
+        env:
+          RUSTDOCFLAGS: "--cfg docsrs --deny=warnings"
+        run: |
+          cargo +nightly doc ${{ env.CARGO_FEATURES }} --frozen --workspace --no-deps
 
   all-done:
     name: Rust All done
@@ -359,8 +406,10 @@ jobs:
       - changes
       - cargo-build
       - cargo-clippy-and-report
+      - cargo-docs
       - cargo-examples
       - cargo-fmt
+      - cargo-msrv
       - cargo-test-and-report
     if: |
       !cancelled()
