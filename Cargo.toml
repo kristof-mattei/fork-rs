@@ -18,9 +18,6 @@ libc = "0.2.186"
 [dev-dependencies]
 pretty_assertions = { version = "=1.4.1", features = ["unstable"] }
 
-[package.metadata.spellcheck]
-config = "spellcheck.toml"
-
 [lints.clippy]
 # don't stop from compiling / running
 all = "warn"
