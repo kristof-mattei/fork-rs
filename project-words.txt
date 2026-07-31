@@ -32,7 +32,6 @@ nextest
 nvmrc
 pathbuf
 pidfd
-pids
 pollfd
 POLLIN
 postprocessors
