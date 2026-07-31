@@ -10,7 +10,6 @@ Ctarget
 cves
 Daemonizes
 docsrs
-dont
 dorny
 EAGAIN
 endfor
@@ -24,7 +23,6 @@ kristof
 lldb
 logfile
 mattei
-maximun
 monomorphization
 multiplatform
 mypy
