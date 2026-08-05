@@ -4,9 +4,10 @@ appuser
 bkeepers
 buildcache
 Chdir
-Cinstrument
+cinstrument
 cocogitto
-Ctarget
+ctarget
+cttc
 cves
 Daemonizes
 docsrs
@@ -23,6 +24,7 @@ kristof
 lldb
 logfile
 mattei
+mimalloc
 monomorphization
 multiplatform
 mypy
@@ -35,8 +37,9 @@ POLLIN
 postprocessors
 prereleased
 profraw
-Retag
-Retagging
+pyflakes
+retag
+retagging
 revents
 RUSTDOCFLAGS
 rustflags
@@ -49,9 +52,9 @@ striptags
 syscall
 sysconf
 taiki
-TARGETPLATFORMDASH
+targetplatformdash
 telem
-Tera
+tera
 topo
 trixie
 tset
