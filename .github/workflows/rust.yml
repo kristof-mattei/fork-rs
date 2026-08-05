@@ -130,6 +130,7 @@ jobs:
       checks: write
       contents: read
       id-token: write
+      issues: read
       pull-requests: write
     steps:
       - *checkout
