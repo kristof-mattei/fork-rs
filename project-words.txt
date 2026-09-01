@@ -1,4 +1,3 @@
-adduser
 appgroup
 appuser
 artipacked
@@ -27,7 +26,6 @@ monomorphization
 multiplatform
 mypy
 nextest
-nvmrc
 oneline
 pathbuf
 pidfd
@@ -40,6 +38,7 @@ pyflakes
 retag
 retagging
 revents
+rhysd
 rustdocflags
 rustflags
 samply
