@@ -5,6 +5,7 @@ bkeepers
 buildcache
 chdir
 cinstrument
+cliffignore
 ctarget
 cves
 daemonizes
@@ -19,12 +20,10 @@ grcov
 hubot
 idents
 kristof
-lldb
 logfile
 mattei
 monomorphization
 multiplatform
-mypy
 nextest
 oneline
 pathbuf
@@ -35,6 +34,7 @@ postprocessors
 prereleased
 profraw
 pyflakes
+rawfile
 retag
 retagging
 revents
@@ -46,6 +46,7 @@ sccache
 setsid
 skopeo
 skopeo's
+slurpfile
 startswith
 striptags
 syscall
