@@ -20,6 +20,7 @@ grcov
 hubot
 idents
 kristof
+lintian
 logfile
 mattei
 monomorphization
