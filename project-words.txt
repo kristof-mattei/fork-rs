@@ -1,3 +1,4 @@
+allgreen
 appgroup
 appuser
 artipacked
@@ -17,7 +18,7 @@ endmacro
 errorlens
 exitcode
 grcov
-hubot
+headgreen
 idents
 kristof
 lintian
