@@ -31,6 +31,7 @@ oneline
 oras
 pathbuf
 pidfd
+pkgs
 pollfd
 pollin
 postprocessors
@@ -59,6 +60,7 @@ targetplatformdash
 telem
 tera
 topo
+tostring
 trixie
 trunc
 tset
