@@ -23,6 +23,7 @@ kristof
 lintian
 logfile
 mattei
+mkhl
 monomorphization
 multiplatform
 nextest
@@ -69,5 +70,4 @@ usernamehw
 vadimcn
 waitpid
 wexitstatus
-worktree
 zizmor
