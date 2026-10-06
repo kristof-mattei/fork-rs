@@ -200,7 +200,7 @@ jobs:
           fetch-depth: 0
 
       - name: Install git-cliff to generate changelog & next version number
-        uses: taiki-e/install-action@83ac0ad63c0167e6f06796fab0fce28db1bf3db0 # v2.87.22
+        uses: taiki-e/install-action@f7e5d7c961414b23f5b25b2da9294395d08513ad # v2.87.26
         with:
           tool: git-cliff
 
@@ -313,7 +313,7 @@ jobs:
           show-progress: false
 
       - name: Install cargo-edit to do set-version
-        uses: taiki-e/install-action@83ac0ad63c0167e6f06796fab0fce28db1bf3db0 # v2.87.22
+        uses: taiki-e/install-action@f7e5d7c961414b23f5b25b2da9294395d08513ad # v2.87.26
         with:
           tool: cargo-edit
 
@@ -805,7 +805,7 @@ jobs:
     runs-on: ${{ matrix.runs-on }}
     # the runner's glibc is newer than Debian stable's, so the build runs in the Dockerfile's image
     container:
-      image: rust:1.99.0-slim-trixie@sha256:bebe6a89cfa73a4c9c58b88ee334107d0b2e5a67877439010d53900c395d0ac2
+      image: rust:1.99.0-slim-trixie@sha256:24e632c09342c20abf8312cf4f61430a911c01ed3a5e4c02b87292b1c39c5273
     permissions:
       artifact-metadata: write # actions/attest
       attestations: write # actions/attest
@@ -846,7 +846,7 @@ jobs:
         uses: mozilla-actions/sccache-action@fc920bf0ec8de6ee65d409111f7ec508035751ba # v0.0.11
 
       - name: Install cargo-deb
-        uses: taiki-e/install-action@83ac0ad63c0167e6f06796fab0fce28db1bf3db0 # v2.87.22
+        uses: taiki-e/install-action@f7e5d7c961414b23f5b25b2da9294395d08513ad # v2.87.26
         with:
           tool: cargo-deb
 
