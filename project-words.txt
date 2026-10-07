@@ -19,6 +19,7 @@ exitcode
 grcov
 headgreen
 idents
+killable
 kristof
 lintian
 logfile
@@ -27,10 +28,10 @@ mkhl
 monomorphization
 multiplatform
 nextest
-oneline
 oras
 pathbuf
 pidfd
+pids
 pkgs
 pollfd
 pollin
@@ -70,4 +71,5 @@ usernamehw
 vadimcn
 waitpid
 wexitstatus
+wnohang
 zizmor

@@ -1,7 +1,10 @@
 use std::env::set_current_dir;
 use std::fs::OpenOptions;
-use std::os::fd::{IntoRawFd as _, RawFd};
-use std::process;
+use std::os::fd::{
+    AsFd as _, AsRawFd as _, BorrowedFd, FromRawFd as _, IntoRawFd as _, OwnedFd, RawFd,
+};
+use std::time::Duration;
+use std::{process, thread};
 
 #[derive(Clone, Copy)]
 #[repr(i32)]
@@ -49,26 +52,53 @@ enum Fork {
 }
 
 fn wait_for_failure(pid: i32, timeout_ms: u16) -> Result<(), std::io::Error> {
+    let exited = match pidfd_open(pid) {
+        Ok(pid_fd) => pidfd_exits_within(pid_fd.as_fd(), timeout_ms)?,
+        Err(_err) => child_exits_within(pid, timeout_ms)?,
+    };
+
+    if exited {
+        Err(std::io::Error::other(
+            "Grandchild died before `timeout_ms` expiration",
+        ))
+    } else {
+        // didn't fail within `timeout_ms`
+        Ok(())
+    }
+}
+
+fn pidfd_open(pid: i32) -> Result<OwnedFd, std::io::Error> {
     // SAFETY: libc call
-    let pid_fd: libc::c_int = unsafe { libc::syscall(libc::SYS_pidfd_open, pid, 0) }
+    let pid_fd: RawFd = cvt::cvt(unsafe { libc::syscall(libc::SYS_pidfd_open, pid, 0) })?
         .try_into()
         .expect("File descriptors always fit in `c_int`");
 
+    // SAFETY: `pidfd_open` returned a new open descriptor
+    Ok(unsafe { OwnedFd::from_raw_fd(pid_fd) })
+}
+
+fn pidfd_exits_within(pid_fd: BorrowedFd<'_>, timeout_ms: u16) -> Result<bool, std::io::Error> {
     let mut poll_fd = libc::pollfd {
-        fd: pid_fd,
+        fd: pid_fd.as_raw_fd(),
         events: libc::POLLIN,
         revents: 0,
     };
 
     // SAFETY: libc call
-    if cvt::cvt_r(|| unsafe { libc::poll(&raw mut poll_fd, 1, timeout_ms.into()) })? == 0 {
-        // didn't fail within `timeout_ms`
-        Ok(())
-    } else {
-        Err(std::io::Error::other(
-            "Grandchild died before `timeout_ms` expiration",
-        ))
-    }
+    let ready = cvt::cvt_r(|| unsafe { libc::poll(&raw mut poll_fd, 1, timeout_ms.into()) })?;
+
+    Ok(ready != 0)
+}
+
+fn child_exits_within(pid: i32, timeout_ms: u16) -> Result<bool, std::io::Error> {
+    thread::sleep(Duration::from_millis(timeout_ms.into()));
+
+    let mut status = 0;
+
+    // SAFETY: libc call
+    let changed_pid = cvt::cvt_r(|| unsafe { libc::waitpid(pid, &raw mut status, libc::WNOHANG) })?;
+
+    Ok(changed_pid != 0)
 }
 
 fn wait_for_success(pid: i32) -> Result<(), std::io::Error> {
@@ -278,12 +308,13 @@ impl DaemonizeOptions {
 
 #[cfg(test)]
 mod tests {
+    use std::process::Command;
     use std::thread;
     use std::time::Duration;
 
     use pretty_assertions::assert_matches;
 
-    use crate::{Identity, daemonize};
+    use crate::{Identity, child_exits_within, daemonize, pidfd_open};
 
     #[test]
     fn child_1() {
@@ -297,5 +328,35 @@ mod tests {
         };
 
         assert_matches!(result, Ok(()));
+    }
+
+    #[test]
+    fn pidfd_open_fails_for_nonexistent_pid() {
+        assert_matches!(pidfd_open(i32::MAX), Err(_));
+    }
+
+    #[test]
+    fn child_exits_within_reports_exited_child() {
+        #[expect(clippy::zombie_processes, reason = "`child_exits_within` reaps it")]
+        let child = Command::new("true").spawn().expect("`true` spawns");
+        let pid = i32::try_from(child.id()).expect("pids fit in `i32`");
+
+        assert_matches!(child_exits_within(pid, 500), Ok(true));
+    }
+
+    #[test]
+    fn child_exits_within_reports_running_child() {
+        let mut child = Command::new("sleep")
+            .arg("10")
+            .spawn()
+            .expect("`sleep` spawns");
+        let pid = i32::try_from(child.id()).expect("pids fit in `i32`");
+
+        let result = child_exits_within(pid, 10);
+
+        child.kill().expect("`sleep` is killable");
+        child.wait().expect("`sleep` is reapable");
+
+        assert_matches!(result, Ok(false));
     }
 }
